@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<style>
+    table {
+        width: 22%; /*ширина таблицы*/
+        background: tan; /* цвет фона таблицы*/
+        color: black; /*цвет текста*/
+        border-spacing: 1px; /*расстояние между ячейками*/
+    }
+
+    td, th {
+        background: tan;
+        padding: 5px;
+    }
+</style>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Роль</th>
+        </tr>
+        <tr>
+            <td th:text="${users.getId()}">value</td>
+            <td th:text="${users.getName()}">value</td>
+            <td th:text="${users.getSurname()}">value</td>
+            <td th:text="${users.getAge()}">value</td>
+            <td th:text="${users.getRole()}">value</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<hr/>
+<br>
+<form  th:action="@{/show}">
+    <button type="submit">Назад</button>
+</form>
+<br>
+<form action="/logout" >
+    <button>Выйти</button>
+</form>
+</body>
+</html>

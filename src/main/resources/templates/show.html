@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Списки пользователей</title>
+</head>
+<style>
+    table {
+        width: 22%; /*ширина таблицы*/
+        background: tan; /* цвет фона таблицы*/
+        color: black; /*цвет текста*/
+        border-spacing: 1px; /*расстояние между ячейками*/
+    }
+
+    td, th {
+        background: tan;
+        padding: 5px;
+    }
+</style>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Роль</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}">id</td>
+            <td th:text="${user.getName()}">name</td>
+            <td th:text="${user.getSurname()}">Surname</td>
+            <td th:text="${user.getAge()}">Age</td>
+            <td th:text="${user.getRole()}">ROle</td>
+<!--            <td th:text="${user.getRoleFromUser()}">Role</td>-->
+            <td>
+                <a th:href="@{/admin/{id}(id=${user.id})}">
+                    <button type="submit">Удалить</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/show/{id}/edit(id=${user.id})}">
+                    <button type="submit">Изменить</button>
+                </a>
+            </td>
+            <td>
+                <form th:align="center" th:action="@{/admin/show/{id}/info(id=${user.getId()})}">
+                    <button type="submit">Информация</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+<br/>
+<form action="/admin/newU">
+    <button>Добавить пользователя</button>
+</form>
+
+</body>
+</html>
