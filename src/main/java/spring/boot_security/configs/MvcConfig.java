@@ -15,14 +15,15 @@ import java.util.Arrays;
 public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/user").setViewName("user");
+//        registry.addViewController("/admin1").setViewName("admin1");
     }
 
-    @Bean
-    public FilterRegistrationBean hiddenHttpMethodFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new HiddenHttpMethodFilter());
-        filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));
-        return filterRegistrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean hiddenHttpMethodFilter() {
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new HiddenHttpMethodFilter());
+//        filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));
+//        return filterRegistrationBean;
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

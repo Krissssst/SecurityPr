@@ -34,9 +34,10 @@
             <td th:text="${users.getAge()}">value</td>
             <td>
                 <table>
-                    <tr th:each="role : ${users.role}">
+                    <tr th:each="role : ${users.getRole()}">
                         <!--/*@thymesVar id="getRole" type=""*/-->
                         <td th:text="${role.getRole()}"></td>
+                        <td th:value="${role.getId()}"></td>
                     </tr>
                 </table>
             </td>

@@ -34,8 +34,9 @@
             <td th:text="${user.getAge()}">Age</td>
             <td>
                 <table>
-                    <tr th:each="role : ${user.role}">
-                        <td th:text="${role.getRole}"></td>
+                    <tr th:each="role : ${user.getRole()}">
+                        <td th:text="${role.getRole()}"></td>
+                        <td th:value="${role.getId()}"></td>
                     </tr>
                 </table>
             </td>
