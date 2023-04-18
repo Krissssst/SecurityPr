@@ -28,13 +28,13 @@
             <th>Роль</th>
         </tr>
         <tr>
-            <td th:text="${users.getId()}">value</td>
-            <td th:text="${users.getName()}">value</td>
-            <td th:text="${users.getSurname()}">value</td>
-            <td th:text="${users.getAge()}">value</td>
+            <td th:text="${user.getId()}">value</td>
+            <td th:text="${user.getName()}">value</td>
+            <td th:text="${user.getSurname()}">value</td>
+            <td th:text="${user.getAge()}">value</td>
             <td>
                 <table>
-                    <tr th:each="role : ${users.getRole()}">
+                    <tr th:each="role:${user.getRoles()}">
                         <!--/*@thymesVar id="getRole" type=""*/-->
                         <td th:text="${role.getRole()}"></td>
                         <td th:value="${role.getId()}"></td>

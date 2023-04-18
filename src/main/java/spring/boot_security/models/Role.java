@@ -22,7 +22,7 @@ public class Role implements GrantedAuthority {
     @Column
     private String role;
 
-    @ManyToMany(mappedBy = "role")
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
     public Role(String role) {
