@@ -17,12 +17,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user").setViewName("user");
     }
 
-//    @Bean
-//    public FilterRegistrationBean hiddenHttpMethodFilter() {
-//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new HiddenHttpMethodFilter());
-//        filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));
-//        return filterRegistrationBean;
-//    }
+    @Bean
+    public FilterRegistrationBean hiddenHttpMethodFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new HiddenHttpMethodFilter());
+        filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));
+        return filterRegistrationBean;
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

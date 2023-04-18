@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class UserServiceImpl implements UserService {
     private PasswordEncoder bCryptPasswordEncoder;
     private UserRepository userRepository;
@@ -43,20 +43,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void save(User user) {
         userRepository.save(user);
     }
 
     @Override
-    @Transactional
     public void update(long id, User updateUser) {
         updateUser.setId(id);
-        userRepository.save(updateUser);
+        userRepository.saveAndFlush(updateUser);
     }
     @Override
-    @Transactional
     public void delete(long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<Role> getRole(){
+        return roleRepository.findAll();
     }
 }
