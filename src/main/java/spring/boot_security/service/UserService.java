@@ -6,6 +6,7 @@ import spring.boot_security.models.User;
 import java.util.List;
 
 public interface UserService {
+
     List<User> findAll();
 
     User findOne(long id);
@@ -17,6 +18,7 @@ public interface UserService {
     void update(long id, User userUpdate);
 
     void delete(long id);
+
     List<Role> getRole();
 
 }

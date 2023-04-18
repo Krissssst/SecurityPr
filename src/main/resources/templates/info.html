@@ -35,7 +35,6 @@
             <td>
                 <table>
                     <tr th:each="role:${user.getRoles()}">
-                        <!--/*@thymesVar id="getRole" type=""*/-->
                         <td th:text="${role.getRole()}"></td>
                         <td th:value="${role.getId()}"></td>
                     </tr>
@@ -47,11 +46,11 @@
 <br/>
 <hr/>
 <br>
-<form  th:action="@{/admin}">
+<form th:action="@{/admin}">
     <button type="submit">Назад</button>
 </form>
 <br>
-<form action="/logout" >
+<form action="/logout">
     <button>Выйти</button>
 </form>
 </body>

@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,8 +31,7 @@ public class User implements UserDetails {
     private String surname;
     @Column(name = "password")
     private String password;
-//    @Column
-//    private String role;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -51,9 +49,6 @@ public class User implements UserDetails {
                 '}';
     }
 
-//    public String getRoleFromUser(){
-//       return role.get((int) id-1).getRole();
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

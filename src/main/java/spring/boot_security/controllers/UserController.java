@@ -12,6 +12,7 @@ import spring.boot_security.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     private final UserService userService;
 
     @Autowired
@@ -19,10 +20,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping()
     public String userShow(@CurrentSecurityContext(expression = "authentication?.name") String name, Model model) {
         User user = userService.findByName(name);
         model.addAttribute("user", user);
-        return "info";
+        return "user";
     }
 }

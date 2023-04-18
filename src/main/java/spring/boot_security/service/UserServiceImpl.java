@@ -17,6 +17,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
     private PasswordEncoder bCryptPasswordEncoder;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-//    @Transactional
+
     public void save(User user) {
         userRepository.save(user);
     }
@@ -53,12 +55,13 @@ public class UserServiceImpl implements UserService {
         updateUser.setId(id);
         userRepository.saveAndFlush(updateUser);
     }
+
     @Override
     public void delete(long id) {
         userRepository.deleteById(id);
     }
 
-    public List<Role> getRole(){
+    public List<Role> getRole() {
         return roleRepository.findAll();
     }
 }

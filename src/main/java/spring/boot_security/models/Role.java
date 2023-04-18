@@ -1,12 +1,10 @@
 package spring.boot_security.models;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,7 +28,6 @@ public class Role implements GrantedAuthority {
     }
 
     public Role() {
-
     }
 
     @Override

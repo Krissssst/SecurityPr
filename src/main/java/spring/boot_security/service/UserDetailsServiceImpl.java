@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import spring.boot_security.models.User;
 import spring.boot_security.repository.UserRepository;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
+
 
     @Autowired
     public UserDetailsServiceImpl(UserRepository userRepository) {
@@ -19,9 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user=userRepository.findByName(username);
-        if (user==null){
-            throw new UsernameNotFoundException(String.format("Пользователь '%s не найден" , username));
+        User user = userRepository.findByName(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("Пользователь '%s не найден", username));
         }
         return user;
     }
