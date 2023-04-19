@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.boot_security.models.Role;
 import spring.boot_security.models.User;
 import spring.boot_security.repository.RoleRepository;
-import spring.boot_security.service.UserService;
 import spring.boot_security.service.UserServiceImpl;
 
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
     private UserServiceImpl userService;
     private final RoleRepository roleRepository;
 

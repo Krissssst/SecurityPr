@@ -3,6 +3,7 @@ package spring.boot_security.models;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -31,6 +32,7 @@ public class User implements UserDetails {
     private String surname;
     @Column(name = "password")
     private String password;
+
 
 
     @ManyToMany(fetch = FetchType.EAGER)

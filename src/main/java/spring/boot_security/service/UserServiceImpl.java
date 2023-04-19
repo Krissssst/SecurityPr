@@ -1,8 +1,6 @@
 package spring.boot_security.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.boot_security.models.Role;
@@ -18,14 +16,14 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private PasswordEncoder bCryptPasswordEncoder;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(PasswordEncoder bCryptPasswordEncoder, UserRepository userRepository, RoleRepository roleRepository) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -47,12 +45,14 @@ public class UserServiceImpl implements UserService {
     @Override
 
     public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
     public void update(long id, User updateUser) {
         updateUser.setId(id);
+        updateUser.setPassword(bCryptPasswordEncoder.encode(updateUser.getPassword()));
         userRepository.saveAndFlush(updateUser);
     }
 

@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
+    public BCryptPasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -37,14 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
+        daoAuthenticationProvider.setPasswordEncoder(getPasswordEncoder());
 
         return daoAuthenticationProvider;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/*").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/user/*").hasAuthority("ROLE_USER")
