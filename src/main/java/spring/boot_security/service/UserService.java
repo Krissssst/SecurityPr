@@ -1,42 +1,24 @@
 package spring.boot_security.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import spring.boot_security.models.Role;
 import spring.boot_security.models.User;
-import spring.boot_security.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
+public interface UserService {
 
-@Service
-@Transactional(readOnly = true)
-public class UserService {
-    private final UserRepository userRepository;
+    List<User> findAll();
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    User findOne(long id);
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
+    User findByName(String name);
 
-    public User findOne(int id){
-        Optional<User> foundUser=userRepository.findById(id);
-        return foundUser.orElse(null);
-    }
+    void save(User user);
 
-    @Transactional
-    public void save(User user){
-        userRepository.save(user);
-    }
+    void update(long id, User userUpdate);
 
-    @Transactional
-    public void update(int id, User updateUser){
-        updateUser.setId(id);
-        userRepository.save(updateUser);
-    }
+    void delete(long id);
+
+    List<Role> getRole();
+
 }
